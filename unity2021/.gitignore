@@ -1,0 +1,19 @@
+
+/_dist_/
+/_build_/
+/Analytics/Assets/TextMesh Pro/
+/Analytics/Assets/TextMesh Pro.meta
+/Analytics/Assets/Plugins/
+/Analytics/Assets/Plugins.meta
+/Analytics/Assets/3rd/
+/Analytics/Assets/3rd.meta
+/Analytics/Library/
+/Analytics/obj/
+/Analytics/Logs/
+/Analytics/Temp/
+/Analytics/UserSettings/
+/Analytics/*.sln
+/Analytics/*.csproj
+/Analytics/.vsconfig
+/Analytics/.vs/
+/.UNITY_HOME.env

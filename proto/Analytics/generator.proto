@@ -1,0 +1,40 @@
+syntax = "proto3";
+import "shared.proto";
+import "google/api/annotations.proto";
+
+option csharp_namespace = "XTC.FMP.MOD.Analytics.LIB.Proto";
+package xtc.fmp.analytics;
+
+// 生成器
+service Generator
+{
+    // 记录
+    rpc Record(GeneratorRecordRequest) returns (GeneratorRecordResponse) { 
+        option (google.api.http) = {
+            post: "/v1/xtc/analytics/generator/record",
+            body: "*",
+        };
+    }
+}
+
+// 生成记录报表的请求
+message GeneratorRecordRequest
+{
+    int64 offset = 1;          // 偏移量
+    int64 count = 2;           // 数量
+    int64 startTime = 3;       // 开始时间
+    int64 endTime = 4;         // 结束时间
+    string appID = 5;          // 应用ID
+    string serialNumber = 6;   // 序列号
+    string userID = 7;         // 用户ID
+    string eventID = 8;        // 事件ID
+    string eventParameter = 9; // 事件参数
+    string template = 11;      // 报表模板
+}
+
+// 生成记录报表的回复
+message GeneratorRecordResponse
+{
+    Status status = 1;  // 状态
+    string content = 2; // 报表内容
+}

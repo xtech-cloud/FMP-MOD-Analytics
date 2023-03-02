@@ -1,0 +1,28 @@
+syntax = "proto3";
+import "shared.proto";
+import "google/api/annotations.proto";
+
+option csharp_namespace = "XTC.FMP.MOD.Analytics.LIB.Proto";
+package xtc.fmp.analytics;
+
+// 跟踪器
+service Tracker
+{
+    // 记录
+    rpc Record(TrackerRecordRequest) returns (BlankResponse) { 
+        option (google.api.http) = {
+            post: "/v1/xtc/analytics/tracker/record",
+            body: "*",
+        };
+    }
+}
+
+// 跟踪记录的请求
+message TrackerRecordRequest
+{
+    string appID = 1;              // 应用ID
+    string serialNumber = 2;       // 序列号
+    string userID = 3;             // 用户ID
+    string eventID = 4;            // 事件ID
+    string eventParameter = 5;     // 事件参数
+}
