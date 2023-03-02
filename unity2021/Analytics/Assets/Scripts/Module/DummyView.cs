@@ -31,7 +31,7 @@ namespace XTC.FMP.MOD.Analytics.LIB.Unity
             try
             {
                 Dictionary<string, object> dict = _data as Dictionary<string, object>;
-                uuid = dict["uuid"] as string;
+                uuid = dict["uid"] as string;
                 eventID = dict["eventID"] as string;
                 eventParameter = dict["eventParameter"] as string;
             }

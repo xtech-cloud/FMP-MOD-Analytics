@@ -16,6 +16,7 @@
     <GRPC address="http://localhost:18000"/>
     <!-- 样式列表
       name: 名称
+      Tracker.appID: 应用id
     -->
     <Styles>
         <Style name="default">

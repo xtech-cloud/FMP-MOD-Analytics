@@ -120,7 +120,7 @@ namespace XTC.FMP.MOD.Analytics.LIB.Unity
         public void __DebugTrackerRecord(string _uid)
         {
             var data = new Dictionary<string, object>();
-            data["uuid"] = _uid;
+            data["uid"] = _uid;
             data["eventID"] = "MyEventID";
             data["eventParameter"] = "MyEventParameter";
             modelDummy_.Publish(MySubject.TrackerRecord, data);
