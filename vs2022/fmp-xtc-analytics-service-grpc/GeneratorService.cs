@@ -2,8 +2,10 @@
 using Grpc.Core;
 using System.Buffers.Text;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using XTC.FMP.MOD.Analytics.LIB.Proto;
 
@@ -12,6 +14,7 @@ namespace XTC.FMP.MOD.Analytics.App.Service
     public class GeneratorService : GeneratorServiceBase
     {
         private readonly SingletonServices singletonServices_;
+        private readonly JsonSerializerOptions jsonSerializerOptions_;
 
         /// <summary>
         /// 构造函数
@@ -23,6 +26,11 @@ namespace XTC.FMP.MOD.Analytics.App.Service
         public GeneratorService(SingletonServices _singletonServices)
         {
             singletonServices_ = _singletonServices;
+            jsonSerializerOptions_ = new JsonSerializerOptions
+            {
+                //Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            };
         }
 
         protected override async Task<GeneratorRecordResponse> safeRecord(GeneratorRecordRequest _request, ServerCallContext _context)
@@ -36,7 +44,7 @@ namespace XTC.FMP.MOD.Analytics.App.Service
             string content;
             if (string.IsNullOrEmpty(_request.Template))
             {
-                content = JsonSerializer.Serialize(entityS);
+                content = JsonSerializer.Serialize(entityS, jsonSerializerOptions_);
             }
             else
             {
